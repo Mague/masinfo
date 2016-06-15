@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-		<link type="text/plain" rel="author" href="<?php echo base_url('humans.txt') ?>" />
-		<title>Masinfo</title>
-		
-		<?php if(ENVIRONMENT=='production'): ?>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<?php elseif(ENVIRONMENT=='development'): ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('estaticos/css/bootstrap.min.css') ?>">
-		<?php endif; ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('estaticos/css/mague.css') ?>">
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
 		<div class="container">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-10">
-				<iframe style="border-radius: 10px" width="420" height="315" src="https://www.youtube.com/embed/xFutjZEBTXs?list=PLgFPSBWI2ATvMcpv8z61cipCaA67Edz0E" frameborder="0" allowfullscreen></iframe>
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+					<iframe style="border-radius: 10px" class="video" src="https://www.youtube.com/embed/xFutjZEBTXs?list=PLgFPSBWI2ATvMcpv8z61cipCaA67Edz0E" frameborder="0" allowfullscreen></iframe>
+				</div>
 			</div>
-			<div class="col-xs-2"></div>
-			<div class="col-xs-8">
-					<div class="input-group">
-				    	<input type="text" class="form-control" placeholder="Search for...">
-			    		<span class="input-group-btn">
-			    			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-			    		</span>
-				    </div><!-- /input-group -->
-				<form role="search">
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+			<div class="row search">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+					<?php echo form_open('app/search', array("role"=>"search")); ?>
+						<div class="input-group">
+					    	<input type="text" class="form-control form-control-nbr input-search" name="search">
+				    		<span class="input-group-btn">
+				    			<button class="btn btn-default btn-nbr btn-search" type="submit">
+				    				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				    			</button>
+				    		</span>
+					    </div><!-- /input-group -->
+					</form>
+				</div>
+			</div>
+			<div class="row menu">
+				<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+					<div class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2">
+						<a href="#">
+							<img src="<?php echo base_url('estaticos/img/comentar.png') ?>" class="w100 menu-option" alt="">
+						</a>
+					</div>
+					<div class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2">
+						<a href="#">
+							<img src="<?php echo base_url('estaticos/img/compartir.png') ?>" class="w100 menu-option" alt="">
+						</a>
+					</div>
+					<div class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2">
+						<a href="#">
+							<img src="<?php echo base_url('estaticos/img/idiomas.png') ?>" class="w100 menu-option" alt="">
+						</a>
+					</div>
+					<div style="padding-right: 0; padding-left: 0; " class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2 text-center">
+						Acceso Directo
+					</div>
+					<div style="padding-right: 0; padding-left: 0; " class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-center">
+						Compartir
+					</div>
+
+					<div style="padding-right: 0; padding-left: 0; " class="col-xs-4 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 text-center">
+						Idioma
+					</div>
+					
+				</div>
 			</div>
 		</div>
-		<?php if(ENVIRONMENT=='production'): ?>
-		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery.js"></script>
-		<!-- Bootstrap JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<?php elseif(ENVIRONMENT=='development'): ?>
-		<!-- jQuery -->
-		<script src="<?php echo base_url('estaticos/js/jquery.js') ?>"></script>
-		<!-- Bootstrap JavaScript -->
-		<script src="<?php echo base_url('estaticos/js/bootstrap.min.js') ?>"></script>
- 		<?php endif; ?>
-	</body>
-</html>
