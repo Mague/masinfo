@@ -27,8 +27,8 @@
 								</select>
 							</div>
 							<div class="col-xs-6">
-								<label for="portada">Portada</label>
-								<input type="file" id="portada" ng-model="portada" class="form-control">
+									<label for="portada">Portada</label>
+									<input type="file" id="portada" name="portada" ng-model="portada" class="form-control" uploader-model="portada">
 							</div>
 						</div>
 					</div>

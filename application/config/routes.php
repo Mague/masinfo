@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'app';
+$route['admin/hoteles/upload'] = 'hoteles/upload';
 $route['admin/hoteles/add'] = 'hoteles/add';
 $route['admin/hoteles'] = 'hoteles';
 $route['404_override'] = '';

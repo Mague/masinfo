@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<?php elseif(ENVIRONMENT=='development'): ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('estaticos/css/bootstrap.css') ?>">
+		<script src="<?php echo base_url('estaticos/js/jquery.js') ?>"></script>
+		
 		<?php endif; ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('estaticos/css/mague.css') ?>">
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

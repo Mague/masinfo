@@ -26,7 +26,7 @@ class App extends CI_Controller {
 	public function hotel($id=''){
 		if(!empty($id) && is_numeric($id)){
 			$data=array();
-			$this->Hotelesdb->getInfoHotel($id);
+			$data['hotel']=$this->Hotelesdb->getInfoHotel($id);
 			$this->load->view('hotel', $data);
 		}
 	}

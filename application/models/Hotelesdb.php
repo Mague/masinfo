@@ -16,7 +16,7 @@ class Hotelesdb extends CI_Model {
 	 * @return Array  Resultados de la busqueda
 	 */
 	function search($q){
-		$sql="SELECT hoteles.nombre,hoteles.id FROM hoteles,provincias,categorias WHERE nombre LIKE '".$this->db->escape_like_str($q)."%' OR provincias.provincia LIKE '".$this->db->escape_like_str($q)."%' OR categorias.categoria LIKE '".$this->db->escape_like_str($q)."%' GROUP BY hoteles.id";
+		$sql="SELECT hoteles.nombre,hoteles.portada,hoteles.id FROM hoteles,provincias,categorias WHERE nombre LIKE '".$this->db->escape_like_str($q)."%' OR provincias.provincia LIKE '".$this->db->escape_like_str($q)."%' OR categorias.categoria LIKE '".$this->db->escape_like_str($q)."%' GROUP BY hoteles.id";
 		$query=$this->db->query($sql);
 		if($query->num_rows()>0){
 			return $query->result_array();
@@ -80,8 +80,9 @@ class Hotelesdb extends CI_Model {
 		}
 	}
 	function getInfoHotel($id){
-		$sql="SELECT * FROM info_hoteles WHERE id=?";
+		$sql="SELECT * FROM info_hoteles WHERE hotel=?";
 		$query=$this->db->query($sql,array($id));
+		// print_r($query);
 		if($query->num_rows()>0){
 			return $query->result_array();
 		}

@@ -1,5 +1,5 @@
 var app=angular.module('hoteles', [])
-app.controller('HotelCntrl',function($http,$scope, $location) {
+app.controller('HotelCntrl',function($http,$scope, $location,$q) {
     var url=$("html").data('url');
     getAllCategorias()
     getAllProvincias()
@@ -7,7 +7,8 @@ app.controller('HotelCntrl',function($http,$scope, $location) {
         var nombre=$scope.nombre
         var provincia=$scope.provincia
         var categoria=$scope.categoria
-        var portada=$scope.portada
+        var portada=$("#portada").prop('files')[0].name
+        // var portada=$("#portada").prop('files')[0]
         var qems=$scope.qems
         var bienvenido=$scope.bienvenido
         var habitaciones=$scope.habitaciones
@@ -31,6 +32,8 @@ app.controller('HotelCntrl',function($http,$scope, $location) {
                 videinterpretacion:videinterpretacion,
                 faq:faq
             }
+            // console.log(datos)
+            // return 
             $.ajax({
                 url: url+'index.php/admin/hoteles/add',
                 type: 'POST',
@@ -38,6 +41,8 @@ app.controller('HotelCntrl',function($http,$scope, $location) {
                 data: datos,
                 success:function(data){
                     if(data){
+                        console.log(data.id_hotel)
+                        $scope.uploadFile(data.id_hotel)
                         $scope.nombre=""
                         $scope.provincia=""
                         $scope.categoria=""
@@ -93,4 +98,78 @@ app.controller('HotelCntrl',function($http,$scope, $location) {
         })
         
     }
-});
+
+
+    function updoadImg(id){
+        var portada=$("#portada").prop('files')[0]
+        $.ajax({
+            url: url+'index.php/admin/hoteles/upload',  
+            type: 'POST',
+            // Form data
+            //datos del formulario
+            data: {portada:portada},
+            //necesario para subir archivos via ajax
+            cache: false,
+            contentType: false,
+            processData: false,
+            //mientras enviamos el archivo
+            beforeSend: function(){
+                console.log("Subiendo")        
+            },
+            //una vez finalizado correctamente
+            success: function(data){
+                if(data){
+                    console.log(data)
+                }
+            },
+            //si ha ocurrido un error
+            error: function(){
+                console.log("Ocurrio un error")
+            }
+        });
+    }
+
+    $scope.uploadFile = function(id)
+    // function uploadFile(id)
+    {
+        var name = id;
+        var file = $scope.portada;
+        uploadFile = function(file, name)
+        {
+            var deferred = $q.defer();
+            var formData = new FormData();
+            formData.append("name", name);
+            formData.append("portada", file);
+            return $http.post(url+"index.php/admin/hoteles/upload", formData, {
+                headers: {
+                    "Content-type": undefined
+                },
+                transformRequest: angular.identity
+            })
+            .success(function(res)
+            {
+                deferred.resolve(res);
+            })
+            .error(function(msg, code)
+            {
+                deferred.reject(msg);
+            })
+            return deferred.promise;
+        }   
+        uploadFile(file, name).then(function(res)
+        {
+            console.log(res);
+        })
+    }
+}).directive('uploaderModel', ["$parse", function ($parse) {
+    return {
+        restrict: 'A',
+        link: function (scope, iElement, iAttrs) 
+        {
+            iElement.on("change", function(e)
+            {
+                $parse(iAttrs.uploaderModel).assign(scope, iElement[0].files[0]);
+            });
+        }
+    };
+}])

@@ -1,8 +1,9 @@
 <div class="col-xs-10 col-xs-offset-1">
 <?php if(!empty($hoteles)): ?>
 <?php foreach ($hoteles as $row):?>
+	<?php $url_img="uploads/".$row['id']."/".$row['portada']; ?>
 	<div class="panel_hotel" id="hotel<?php echo $row['id']?>">
-		<img src="http://lorempixel.com/270/150" style="width: 100%;min-height: 150px;max-height: 150px;border-radius: 1.5em;position: absolute;">
+		<img src="<?php echo base_url($url_img); ?>" style="width: 100%;min-height: 150px;max-height: 150px;border-radius: 1.5em;position: absolute;">
 		<p class="title_panel_hotel">
 			<?php echo $row['nombre']; ?>
 		</p>
